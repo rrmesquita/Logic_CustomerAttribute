@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Logic
+ * @package     Logic_CustomerAttribute
+ * @author      Rodrigo Mesquita <rodrigoriome@gmail.com>
+ * @license     https://opensource.org/licenses/MIT - MIT License
+ */
+-->
+<config>
+    <modules>
+        <Logic_CustomerAttribute>
+            <version>1.0.0</version>
+        </Logic_CustomerAttribute>
+    </modules>
+    <global>
+        <blocks>
+            <lgc_customerattribute>
+                <class>Logic_CustomerAttribute_Block</class>
+            </lgc_customerattribute>
+        </blocks>
+        <helpers>
+            <lgc_customerattribute>
+                <class>Logic_CustomerAttribute_Helper</class>
+            </lgc_customerattribute>
+        </helpers>
+        <models>
+            <lgc_customerattribute>
+                <class>Logic_CustomerAttribute_Model</class>
+                <resourceModel>lgc_customerattribute_resource</resourceModel>
+            </lgc_customerattribute>
+            <lgc_customerattribute_resource>
+                <class>Logic_CustomerAttribute_Model_Resource</class>
+                <entities>
+                    <store>
+                        <table>lgc_customerattribute_store</table>
+                    </store>
+                </entities>
+            </lgc_customerattribute_resource>
+            <customer>
+                <rewrite>
+                    <attribute>Logic_CustomerAttribute_Model_Attribute</attribute>
+                </rewrite>
+            </customer>
+        </models>
+        <resources>
+            <lgc_customerattribute_setup>
+                <setup>
+                    <module>Logic_CustomerAttribute</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </lgc_customerattribute_setup>
+            <lgc_customerattribute_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </lgc_customerattribute_write>
+            <lgc_customerattribute_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </lgc_customerattribute_read>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <lgc_customerattribute before="Mage_Adminhtml">Logic_CustomerAttribute_Adminhtml</lgc_customerattribute>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Logic_CustomerAttribute>
+                    <files>
+                        <default>Logic_CustomerAttribute.csv</default>
+                    </files>
+                </Logic_CustomerAttribute>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Logic
+ * @package     Logic_CustomerAttribute
+ * @author      Rodrigo Mesquita <rodrigoriome@gmail.com>
+ * @license     https://opensource.org/licenses/MIT - MIT License
+ */
+-->
+<config>
+    <menu>
+        <customer>
+            <children>
+                <attributes translate="title" module="lgc_customerattribute">
+                    <title>Manage Attributes</title>
+                    <sort_order>20</sort_order>
+                    <action>adminhtml/customer_attribute/index</action>
+                </attributes>
+            </children>
+        </customer>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <customer>
+                        <children>
+                            <attributes>
+                                <title>Attributes</title>
+                                <sort_order>20</sort_order>
+                            </attributes>
+                        </children>
+                    </customer>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

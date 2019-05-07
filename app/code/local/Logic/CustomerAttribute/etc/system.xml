@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Logic
+ * @package     Logic_CustomerAttribute
+ * @author      Rodrigo Mesquita <rodrigoriome@gmail.com>
+ * @license     https://opensource.org/licenses/MIT - MIT License
+ */
+-->
+<config>
+    <sections>
+        <customer translate="label" module="customer">
+            <groups>
+                <create_account translate="label">
+                    <fields>
+                        <vat_frontend_visibility>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </vat_frontend_visibility>
+                    </fields>
+                </create_account>
+                <address translate="label">
+                    <fields>
+                        <prefix_show>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </prefix_show>
+                        <middlename_show>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </middlename_show>
+                        <suffix_show>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </suffix_show>
+                        <dob_show>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </dob_show>
+                        <taxvat_show>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </taxvat_show>
+                        <gender_show>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </gender_show>
+                    </fields>
+                </address>
+            </groups>
+        </customer>
+    </sections>
+</config>

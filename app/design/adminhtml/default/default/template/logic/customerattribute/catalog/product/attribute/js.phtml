@@ -1,0 +1,82 @@
+<?php
+/**
+ * @category    Logic
+ * @package     Logic_CustomerAttribute
+ * @author      Rodrigo Mesquita <rodrigoriome@gmail.com>
+ * @license     https://opensource.org/licenses/MIT - MIT License
+ */
+?>
+
+<script type="text/javascript">
+;(function() {
+  let frontendInput = $('frontend_input')
+  let optPanel = $('matage-options-panel')
+  let isVisible = $('is_visible')
+  let storeView = $('store_view')
+
+  function checkOptionsPanelVisibility() {
+    if(optPanel) {
+      if(frontendInput && frontendInput.value === 'select' || frontendInput.value === 'multiselect') {
+        optPanel.show()
+      } else {
+        optPanel.hide()
+      }
+    }
+  }
+
+  function setInputVisibility(id, visibility) {
+    let tr = $(id).closest('tr')
+
+    if (visibility) {
+      tr.show()
+    } else {
+      tr.hide()
+    }
+  }
+
+  function bindOptionsDefaultInputType() {
+    /*
+     * "optionDefaultInputType" is alerady set somewhere else on adminhtml javascript files
+     * and it should remain global, as it is used to determine which input type will be used
+     * upon a new option creation
+     */
+    switch (frontendInput.value) {
+      case 'select':
+        optionDefaultInputType = 'radio'
+        break
+      case 'multiselect':
+        optionDefaultInputType = 'checkbox'
+        break
+      default:
+        optionDefaultInputType = null
+    }
+
+    document.getElementsByName('default[]').forEach(el => {
+      el.checked = false
+      el.type = optionDefaultInputType
+    })
+  }
+
+  function checkStoreViewVisibility() {
+    let storeViewVisibility = false
+    if ($('is_visible').value == true) {
+      storeViewVisibility = true
+    } else {
+      $('store_view').value = 0
+    }
+    setInputVisibility('store_view', storeViewVisibility)
+  }
+
+  Event.observe(frontendInput, 'change', function() {
+    checkOptionsPanelVisibility()
+    bindOptionsDefaultInputType()
+  })
+
+  Event.observe(isVisible, 'change', function() {
+    checkStoreViewVisibility()
+  })
+
+  checkStoreViewVisibility()
+  checkOptionsPanelVisibility()
+})()
+</script>
