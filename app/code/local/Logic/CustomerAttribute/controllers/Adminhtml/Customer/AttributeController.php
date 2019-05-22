@@ -23,7 +23,7 @@ class Logic_CustomerAttribute_Adminhtml_Customer_AttributeController extends Mag
         $this->_entityType     = Mage::getModel('customer/customer')->getEntityType();
         $this->_entityTypeId   = $this->_entityType->getEntityTypeId();
         $this->_entityTypeCode = $this->_entityType->getEntityTypeCode();
-        $this->_attribute      = $this->_model->load($this->_id);
+        $this->_attribute      = $this->_model->load($this->_id)->setEntityTypeId($this->_entityTypeId);
     }
 
     protected function indexAction()
@@ -46,7 +46,7 @@ class Logic_CustomerAttribute_Adminhtml_Customer_AttributeController extends Mag
         $entity = $this->_model;
 
         if ($this->_id) {
-            $entity = $this->_attribute;
+            $entity = Mage::getModel('customer/attribute')->load($this->_id);
         }
 
         $entity->getUsedInForms();
@@ -73,13 +73,6 @@ class Logic_CustomerAttribute_Adminhtml_Customer_AttributeController extends Mag
             return;
         }
 
-        // check attribute existence
-        if (!$this->_attribute->getId()) {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('lgc_customerattribute')->__('This attribute no longer exists'));
-            $this->_redirect('*/*/');
-            return;
-        }
-
         if ($data) {
             if ($this->_id) {
                 $data['attribute_code']  = $this->_attribute->getAttributeCode();
@@ -102,7 +95,7 @@ class Logic_CustomerAttribute_Adminhtml_Customer_AttributeController extends Mag
             Mage::getModel('lgc_customerattribute/store')->deleteByColumnValue('attribute_id' ,$this->_id);
 
             // Store the relationship of attribute and store
-            if (isset($data['store_view'])) {
+            if (!Mage::app()->isSingleStoreMode() && isset($data['store_view'])) {
                 foreach ($data['store_view'] as $index => $id) {
                     $storeObject = Mage::getModel('lgc_customerattribute/store');
                     $storeObject->setData('attribute_id', $this->_id);
